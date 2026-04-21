@@ -1,0 +1,8 @@
+## folders
+node_modules
+build
+teste
+
+
+## files
+package-lock.json

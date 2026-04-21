@@ -1,0 +1,41 @@
+{
+  "name": "@helzady/logger",
+  "version": "1.0.0",
+  "description": "um logger simples e poderoso para Node.js, com saídas formatadas no console, tratamento de erros e utilitários focados no desenvolvedor.",
+  "homepage": "https://github.com/HelzadyDev/helzady-logger#readme",
+  "bugs": {
+    "url": "https://github.com/HelzadyDev/helzady-logger/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelzadyDev/helzady-logger.git"
+  },
+  "license": "MIT",
+  "author": "Helzady",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "logger",
+    "log",
+    "console",
+    "nodejs",
+    "utils",
+    "logging",
+    "degub",
+    "error",
+    "terminal",
+    "developer",
+    "cli",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
+  },
+  "imports": {
+    "#function": ["./build/function/index.js"]
+  }
+}
