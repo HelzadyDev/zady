@@ -1,4 +1,4 @@
-export type FatalOptions = {
+export type CrashOptions = {
   code?: number; // código de saida do processo
   prefix?: string; // Prefixoda mensagen
   showStack: boolean; // Mostrar stack trace
