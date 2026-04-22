@@ -13,7 +13,7 @@
   "license": "MIT",
   "author": "Helzady",
   "type": "module",
-  "files": ["dist"],
+  "files": ["build"],
   "main": "build/index.js",
   "scripts": {
     "build": "tsc"
