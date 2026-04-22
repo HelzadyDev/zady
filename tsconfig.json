@@ -30,7 +30,9 @@
 		"baseUrl": "./src",
 		"paths": {
 			"#functions": ["./function/index"],
-			"#utils": ["./utils/index"]
+			"#utils": ["./utils/index"],
+			"#core": ["./core/index"],
+			"#config": ["./config/index"],
 		}
 	},
 	

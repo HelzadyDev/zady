@@ -38,6 +38,9 @@
   },
   "imports": {
     "#functions": ["./build/functions/index.js"],
-    "#utils": ["./build/utils/index.js"]
+    "#utils": ["./build/utils/index.js"],
+    "#core": ["./build/core/index.js"],
+    "#config": ["./build/config/index.js"]
+
   }
 }
