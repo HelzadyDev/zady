@@ -1,6 +1,6 @@
 {
   "name": "@helzady/logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "um logger simples e poderoso para Node.js, com saídas formatadas no console, tratamento de erros e utilitários focados no desenvolvedor.",
   "homepage": "https://github.com/HelzadyDev/helzady-logger#readme",
   "bugs": {
@@ -13,7 +13,9 @@
   "license": "MIT",
   "author": "Helzady",
   "type": "module",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "main": "build/index.js",
   "scripts": {
     "build": "tsc"
@@ -37,10 +39,17 @@
     "typescript": "^6.0.3"
   },
   "imports": {
-    "#functions": ["./build/functions/index.js"],
-    "#utils": ["./build/utils/index.js"],
-    "#core": ["./build/core/index.js"],
-    "#config": ["./build/config/index.js"]
-
+    "#functions": [
+      "./build/functions/index.js"
+    ],
+    "#utils": [
+      "./build/utils/index.js"
+    ],
+    "#core": [
+      "./build/core/index.js"
+    ],
+    "#config": [
+      "./build/config/index.js"
+    ]
   }
 }
