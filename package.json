@@ -1,6 +1,6 @@
 {
   "name": "@helzady/logger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "um logger simples e poderoso para Node.js, com saídas formatadas no console, tratamento de erros e utilitários focados no desenvolvedor.",
   "homepage": "https://github.com/HelzadyDev/helzady-logger#readme",
   "bugs": {
