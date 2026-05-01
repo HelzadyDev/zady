@@ -1,4 +1,4 @@
-import { colors } from "#core";
+import { colors, terminalStyle } from "#core";
 import { getTimestamp } from "#utils";
 
 // Função responsavel por montar a mensagem fatal
@@ -9,8 +9,8 @@ export function formatMenssage(
     useTimestamp: boolean
 ): string {
     const time = useTimestamp
-    ? `${colors.gray}[${getTimestamp()}]${colors.reset}`
+    ? `${colors.gray}[${getTimestamp()}]${terminalStyle.reset}`
     : ""
 
-    return `${time}${color}[${prefix}]${colors.reset} ${message}`
+    return `${time}${color}[${prefix}]${terminalStyle.reset} ${message}`
 }
