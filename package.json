@@ -1,14 +1,17 @@
 {
-  "name": "@helzady/logger",
-  "version": "1.0.4",
+  "name": "@helzady/zady",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "um logger simples e poderoso para Node.js, com saídas formatadas no console, tratamento de erros e utilitários focados no desenvolvedor.",
-  "homepage": "https://github.com/HelzadyDev/helzady-logger#readme",
+  "homepage": "https://github.com/HelzadyDev/zady#readme",
   "bugs": {
-    "url": "https://github.com/HelzadyDev/helzady-logger/issues"
+    "url": "https://github.com/HelzadyDev/zady/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HelzadyDev/helzady-logger.git"
+    "url": "git+https://github.com/HelzadyDev/zady.git"
   },
   "license": "MIT",
   "author": "Helzady",
@@ -19,7 +22,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf ./build && tsc",
     "dev": "tsx ./src/index.ts"
   },
   "keywords": [

@@ -1,4 +1,4 @@
-# @helzady/logger
+# zady
 
 Biblioteca leve para logs no Node.js com suporte a cores, prefixos, timestamp e controle de erros.
 
@@ -7,7 +7,7 @@ Biblioteca leve para logs no Node.js com suporte a cores, prefixos, timestamp e 
 ## 📦 Instalação
 
 ```bash
-npm install @helzady/logger
+npm install zady
 ```
 
 ---

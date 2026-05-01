@@ -1,7 +1,7 @@
 import * as functions from "#functions"
 import { bgColors, colors, terminalStyle } from "#core"
 
-const logger = {
+const zady = {
   ...functions,
   
   style: {
@@ -11,5 +11,5 @@ const logger = {
   }
 }
 
-export default logger
+export default zady
 
