@@ -14,7 +14,7 @@
     "url": "git+https://github.com/HelzadyDev/zady.git"
   },
   "license": "MIT",
-  "author": "Helzady",
+  "author": "HelzadyDev",
   "type": "module",
   "files": [
     "build"
