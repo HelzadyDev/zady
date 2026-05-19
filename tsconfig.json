@@ -29,10 +29,10 @@
 		// Path mapping Options
 		"baseUrl": "./src",
 		"paths": {
-			"#functions": ["./functions/index"],
-			"#utils": ["./utils/index"],
-			"#core": ["./core/index"],
-			"#config": ["./config/index"],
+			"#functions": ["./functions/index.ts"],
+			"#utils": ["./utils/index.ts"],
+			"#core": ["./core/index.ts"],
+			"#config": ["./config/index.ts"],
 		}
 	},
 	
