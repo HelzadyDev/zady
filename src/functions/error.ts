@@ -12,7 +12,7 @@ import { defaults } from "#config";
 export function error(message: string, options: ErrorOptions = {}): never {
   const {
     code = defaults.code,
-    prefix = "FATAL",
+    prefix = "ERROR",
     showStack = defaults.showStack,
     timestamp = defaults.timeStamp,
     error,

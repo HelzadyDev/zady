@@ -29,7 +29,7 @@
 		// Path mapping Options
 		"baseUrl": "./src",
 		"paths": {
-			"#functions": ["./function/index"],
+			"#functions": ["./functions/index"],
 			"#utils": ["./utils/index"],
 			"#core": ["./core/index"],
 			"#config": ["./config/index"],

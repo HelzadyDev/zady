@@ -7,4 +7,5 @@ teste
 
 
 ## files
-package-lock.json
+*.logs
+*.log
