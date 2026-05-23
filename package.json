@@ -1,6 +1,6 @@
 {
   "name": "@helzady/zady",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +22,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build": "rimraf ./build && tsc",
+    "build": "tsc",
     "dev": "tsx ./src/index.ts"
   },
   "keywords": [
