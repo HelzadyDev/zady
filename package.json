@@ -24,7 +24,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx ./src/index.ts",
-    "check": "tsc --noEmit && eslint src --ext .ts && ts-prune"
+    "check": "tsc --noEmit && eslint src --ext .ts && ts-prune",
+    "prepublishOnly": "npm run check-build",
+    "check-build": "node scripts/check-build.js"
   },
   "keywords": [
     "logger",
