@@ -25,6 +25,8 @@
 		// Output Options
 		"outDir": "./build",
 		"rootDir": "./src",
+		"sourceMap": true,
+		"inlineSources": true,
 
 		// Path mapping Options
 		"baseUrl": "./src",
@@ -32,7 +34,7 @@
 			"#functions": ["./functions/index.ts"],
 			"#utils": ["./utils/index.ts"],
 			"#core": ["./core/index.ts"],
-			"#config": ["./config/index.ts"],
+			"#settings": ["./settings/index.ts"],
 		}
 	},
 	

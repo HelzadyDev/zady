@@ -23,7 +23,8 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx ./src/index.ts"
+    "dev": "tsx ./src/index.ts",
+    "check": "tsc --noEmit && eslint src --ext .ts && ts-prune"
   },
   "keywords": [
     "logger",
@@ -41,6 +42,11 @@
   ],
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
+    "eslint": "^10.4.0",
+    "jiti": "^2.7.0",
+    "ts-prune": "^0.10.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
   },
@@ -54,8 +60,8 @@
     "#core": [
       "./build/core/index.js"
     ],
-    "#config": [
-      "./build/config/index.js"
+    "#settings": [
+      "./build/settings/index.js"
     ]
   }
 }
