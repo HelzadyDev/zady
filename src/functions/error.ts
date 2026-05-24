@@ -1,12 +1,6 @@
-// import { colors, formatMenssage } from "#core";
-
-// // log de erro
-// export function error(message: string): void {
-//     console.error(formatMenssage(message, "ERROR", colors.red, true))
-// }
-
 import { colors, ErrorOptions, formatMenssage } from "#core";
-import { defaults } from "#config";
+import { defaults } from "#settings";
+import { exitProcess } from "#utils";
 
 // função fatal que encerra o processo
 export function error(message: string, options: ErrorOptions = {}): never {
@@ -27,5 +21,5 @@ export function error(message: string, options: ErrorOptions = {}): never {
   }
 
   // Encerra o processo
-  process.exit(code);
+  exitProcess(code);
 }

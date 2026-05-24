@@ -1,7 +1,7 @@
 import { colors, terminalStyle } from "#core";
 import { getTimestamp } from "#utils";
 
-interface TimerResult {
+export interface TimerResult {
     stop: (label?: string) => void;
 }
 
