@@ -1,4 +1,4 @@
-import { colors, terminalStyle } from "#core";
+import { colors, nativeConsole, terminalStyle } from "#core";
 import { getTimestamp } from "#utils";
 
 export interface TimerResult {
@@ -17,7 +17,7 @@ export function timer(label: string): TimerResult {
             const tag = `${colors.cyan}[TIMER]${terminalStyle.reset}`;
             const duration = `${colors.cyan}${elapsed}ms${terminalStyle.reset}`;
 
-            console.log(`${time}${tag} ${displayLabel} — ${duration}`);
+            nativeConsole.log(`${time}${tag} ${displayLabel} — ${duration}`);
         }
     };
 }

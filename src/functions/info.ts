@@ -1,5 +1,5 @@
-import { colors, formatMenssage } from "#core";
+import { colors, formatMenssage, nativeConsole } from "#core";
 
 export function info(message: string): void {
-    console.log(formatMenssage(message, "INFO", colors.blue, true))
+    nativeConsole.log(formatMenssage(message, "INFO", colors.blue, true))
 }

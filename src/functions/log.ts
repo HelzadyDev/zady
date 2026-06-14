@@ -1,6 +1,6 @@
-import { colors, formatMenssage } from "#core";
+import { colors, formatMenssage, nativeConsole } from "#core";
 
 // Log padrão (info)
 export function log(message: string): void{
-    console.log(formatMenssage(message, "LOG", colors.gray, true))
+    nativeConsole.log(formatMenssage(message, "LOG", colors.gray, true))
 }

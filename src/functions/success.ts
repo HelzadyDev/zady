@@ -1,6 +1,6 @@
-import { colors, formatMenssage } from "#core";
+import { colors, formatMenssage, nativeConsole } from "#core";
 
 // Log de sucesso
 export function success(message: string): void {
-    console.log(formatMenssage(message, "SUCCESS", colors.green, true))
+    nativeConsole.log(formatMenssage(message, "SUCCESS", colors.green, true))
 }

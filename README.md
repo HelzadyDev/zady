@@ -1,150 +1,169 @@
 # Zady
 
-Logger leve para Node.js com saída colorida no terminal.
+Logger simples para Node.js com mensagens formatadas, cores ANSI, timer, debug condicional e utilitarios para melhorar a saida do console.
 
----
-
-## 📦 Instalação
+## Instalacao
 
 ```bash
 npm install @helzady/zady
 ```
 
----
-
-## 🚀 Uso
+## Uso Rapido
 
 ```ts
 import zady from "@helzady/zady";
 
-zady.log("Mensagem de debug");
+zady.log("Mensagem comum");
 zady.info("Servidor iniciado na porta 3000");
-zady.warn("Variável de ambiente não definida");
-zady.success("Conexão estabelecida");
-zady.error("Falha crítica", { error: new Error("stack trace aqui") });
-zady.debug("Valor da variável x: 42");
+zady.warn("Variavel de ambiente nao definida");
+zady.success("Conexao estabelecida");
+zady.debug("Valor calculado: 42");
 zady.divider();
-zady.timer("query ao banco");
+
+const task = zady.timer("consulta ao banco");
+// await db.query("SELECT ...");
+task.stop("Consulta concluida");
 ```
 
-Ou com destructuring:
+O pacote exporta um objeto padrao com todas as funcoes disponiveis.
+
+## Saida
+
+```txt
+[14/06/2026 10:30] [LOG] Mensagem comum
+[14/06/2026 10:30] [INFO] Servidor iniciado na porta 3000
+[14/06/2026 10:30] [WARN] Variavel de ambiente nao definida
+[14/06/2026 10:30] [SUCCESS] Conexao estabelecida
+[14/06/2026 10:30] [DEBUG] Valor calculado: 42
+----------------------------------------
+[14/06/2026 10:30] [TIMER] Consulta concluida - 42.31ms
+```
+
+As mensagens usam codigos ANSI para colorir a saida em terminais compativeis.
+
+## API
+
+| Funcao | Descricao |
+| --- | --- |
+| `log(message)` | Exibe uma mensagem com o prefixo `LOG`. |
+| `info(message)` | Exibe uma mensagem informativa com o prefixo `INFO`. |
+| `warn(message)` | Exibe um aviso com o prefixo `WARN`. |
+| `success(message)` | Exibe uma confirmacao com o prefixo `SUCCESS`. |
+| `debug(message)` | Exibe uma mensagem com o prefixo `DEBUG` somente quando `DEBUG=true`. |
+| `error(message, options?)` | Exibe um erro formatado e encerra o processo. |
+| `divider(char?, length?)` | Exibe uma linha divisoria no terminal. |
+| `timer(label)` | Cria um medidor de tempo e retorna um objeto com `stop(label?)`. |
+| `patchConsole(options?)` | Substitui metodos do `console` nativo por versoes formatadas. |
+
+## Erros
+
+`error` e uma funcao fatal: depois de imprimir a mensagem, ela encerra o processo com `process.exit`.
 
 ```ts
-import { log, info, warn, success, error, debug, divider, timer } from "@helzady/zady";
-```
+import zady from "@helzady/zady";
 
----
-
-## 🧾 Saída
-
-```bash
-[18/05/2026 14:00] [LOG]     Mensagem de debug
-[18/05/2026 14:00] [INFO]    Servidor na porta 3000
-[18/05/2026 14:00] [WARN]    Variável de ambiente não definida
-[18/05/2026 14:00] [SUCCESS] Conexão estabelecida
-[18/05/2026 14:00] [ERROR]   Falha crítica
-[18/05/2026 14:00] [DEBUG]   Valor da variável x: 42
-────────────────────────────────────────
-[18/05/2026 14:00] [TIMER]   query ao banco — 42.31ms
-```
-
-> As cores e o formato dos logs são aplicados via ANSI no terminal.
-
----
-
-## 📌 Funções disponíveis
-
-| Função                       | Prefixo   | Cor      | Descrição                                          |
-| ---------------------------- | --------- | -------- | -------------------------------------------------- |
-| `log(message)`               | `LOG`     | Cinza    | Debug e mensagens de desenvolvimento               |
-| `info(message)`              | `INFO`    | Azul     | Informações relevantes do sistema                  |
-| `warn(message)`              | `WARN`    | Amarelo  | Avisos que não encerram o processo                 |
-| `success(message)`           | `SUCCESS` | Verde    | Confirmação de operações bem-sucedidas             |
-| `error(message, options?)`   | `ERROR`   | Vermelho | Erro crítico — **encerra o processo**              |
-| `debug(message)`             | `DEBUG`   | Magenta  | Log condicional — só exibe quando `DEBUG=true`     |
-| `divider(char?, length?)`    | —         | Cinza    | Linha separadora no terminal                       |
-| `timer(label)`               | `TIMER`   | Ciano    | Mede o tempo de uma operação                       |
-
----
-
-## ⚙️ Opções da função `error`
-
-A função `error` aceita um segundo argumento com as seguintes opções:
-
-```ts
-error("Mensagem de erro", {
-  code?: number       // código de saída do processo (padrão: 1)
-  prefix?: string     // prefixo customizado (padrão: "ERROR")
-  showStack?: boolean // exibir stack trace (padrão: true)
-  timestamp?: boolean // exibir data/hora (padrão: true)
-  error?: unknown     // objeto de erro para exibir o stack
-})
-```
-
-Exemplo:
-
-```ts
 try {
-  // ...
+  throw new Error("Falha ao conectar");
 } catch (err) {
-  error("Falha ao conectar ao banco", {
+  zady.error("Nao foi possivel conectar ao banco", {
     code: 1,
     error: err,
     showStack: true,
+    timestamp: true,
   });
 }
 ```
 
----
+Opcoes aceitas:
 
-## 🐛 Debug
+| Opcao | Tipo | Padrao | Descricao |
+| --- | --- | --- | --- |
+| `code` | `number` | `1` | Codigo usado ao encerrar o processo. |
+| `prefix` | `string` | `"ERROR"` | Prefixo exibido na mensagem. |
+| `showStack` | `boolean` | `true` | Exibe a stack quando `error` for uma instancia de `Error`. |
+| `timestamp` | `boolean` | `true` | Controla a exibicao de data e hora. |
+| `error` | `unknown` | `undefined` | Erro original usado para extrair stack e, quando existir, codigo. |
 
-A função `debug` só exibe logs quando a variável de ambiente `DEBUG=true` estiver ativa:
+Campos extras tambem podem ser enviados no objeto de opcoes; eles serao impressos como metadados.
 
-```ts
-debug("Valor da variável x: 42");
-```
+## Debug
+
+`debug` so imprime mensagens quando a variavel de ambiente `DEBUG` esta exatamente como `true`.
 
 ```bash
 DEBUG=true node app.js
 ```
 
----
-
-## ─ Divider
-
-Imprime uma linha separadora para organizar a saída do terminal:
-
 ```ts
-divider()          // ────────────────────────────────────────
-divider("=", 20)   // ====================
-divider("*", 10)   // **********
+import zady from "@helzady/zady";
+
+zady.debug("Esse log so aparece com DEBUG=true");
 ```
 
----
-
-## ⏱ Timer
-
-Mede o tempo de execução de uma operação:
+## Timer
 
 ```ts
-const t = timer("query ao banco");
+import zady from "@helzady/zady";
 
-await db.query("SELECT ...");
+const task = zady.timer("upload");
 
-t.stop("Query concluída");
-// → [TIMER] Query concluída — 42.31ms
+// execute a operacao...
 
-// ou sem mensagem
-t.stop();
-// → [TIMER] query ao banco — 42.31ms
+task.stop();
+task.stop("Upload finalizado");
 ```
 
----
+## Divider
 
-## 🎨 Estilos
+```ts
+import zady from "@helzady/zady";
 
-A lib também expõe utilitários de estilo ANSI para uso direto no terminal:
+zady.divider();
+zady.divider("=", 20);
+zady.divider("*", 10);
+```
+
+## Patch Do Console
+
+`patchConsole` permite aplicar a formatacao do Zady aos metodos nativos do `console`.
+
+```ts
+import zady from "@helzady/zady";
+
+zady.patchConsole();
+
+console.log("mensagem comum");
+console.warn("aviso");
+console.error("erro");
+console.info("info");
+console.debug("debug");
+```
+
+Voce pode ativar apenas alguns metodos:
+
+```ts
+zady.patchConsole({
+  log: true,
+  warn: true,
+  error: false,
+  info: true,
+  debug: true,
+  requireDebugEnv: true,
+});
+```
+
+| Opcao | Padrao | Descricao |
+| --- | --- | --- |
+| `log` | `true` | Formata `console.log`. |
+| `warn` | `true` | Formata `console.warn`. |
+| `error` | `true` | Formata `console.error`. |
+| `info` | `true` | Formata `console.info`. |
+| `debug` | `true` | Formata `console.debug`. |
+| `requireDebugEnv` | `false` | Quando `true`, `console.debug` so imprime com `DEBUG=true`. |
+
+## Estilos ANSI
+
+O export padrao tambem inclui utilitarios de estilo em `zady.style`.
 
 ```ts
 import zady from "@helzady/zady";
@@ -153,22 +172,26 @@ const { colors, bgColors, terminalStyle } = zady.style;
 
 console.log(`${colors.cyan}Texto ciano${terminalStyle.reset}`);
 console.log(`${bgColors.red}Fundo vermelho${terminalStyle.reset}`);
+console.log(`${terminalStyle.negrito}Texto em negrito${terminalStyle.reset}`);
 ```
 
-### `colors`
+Valores disponiveis:
 
-`black` · `red` · `green` · `yellow` · `blue` · `magenta` · `cyan` · `white` · `gray`
+| Grupo | Chaves |
+| --- | --- |
+| `colors` | `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `gray` |
+| `bgColors` | `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white` |
+| `terminalStyle` | `reset`, `negrito`, `fraco`, `italico`, `sublinhado`, `riscado` |
 
-### `bgColors`
+## Desenvolvimento
 
-`black` · `red` · `green` · `yellow` · `blue` · `magenta` · `cyan` · `white`
+```bash
+npm run build
+npm run check
+```
 
-### `terminalStyle`
+Antes de publicar, o pacote espera os arquivos gerados em `build`.
 
-`reset` · `negrito` · `fraco` · `italico` · `sublinhado` · `riscado`
+## Licenca
 
----
-
-## 📄 Licença
-
-MIT — [HelzadyDev](https://github.com/HelzadyDev)
+MIT - [HelzadyDev](https://github.com/HelzadyDev)

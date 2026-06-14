@@ -1,7 +1,8 @@
 export interface ErrorOptions {
-  code?: number; // código de saida do processo
-  prefix?: string; // Prefixoda mensagen
-  showStack?: boolean; // Mostrar stack trace
-  timestamp?: boolean; // Mostar data/hora
-  error?: unknown; // Objeto de erro
+  [key: string]: unknown;
+  code?: number; // codigo de saida do processo
+  prefix?: string; // prefixo da mensagem
+  showStack?: boolean; // mostrar stack trace
+  timestamp?: boolean; // mostrar data/hora
+  error?: unknown; // objeto de erro
 };
