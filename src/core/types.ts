@@ -1,8 +1,11 @@
-export interface ErrorOptions {
+export interface LogOptions {
   [key: string]: unknown;
-  code?: number; // codigo de saida do processo
   prefix?: string; // prefixo da mensagem
-  showStack?: boolean; // mostrar stack trace
   timestamp?: boolean; // mostrar data/hora
+}
+
+export interface ErrorOptions extends LogOptions {
+  code?: number; // codigo de saida do processo
+  showStack?: boolean; // mostrar stack trace
   error?: unknown; // objeto de erro
 };

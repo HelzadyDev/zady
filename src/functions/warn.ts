@@ -1,6 +1,7 @@
-import { colors, formatMenssage, nativeConsole } from "#core";
+import { colors, formatMenssage, LogOptions, nativeConsole } from "#core";
 
 // log de aviso
-export function warn(message: string): void {
-    nativeConsole.log(formatMenssage(message, "WARN", colors.yellow, true))
+export function warn(message: string, options: LogOptions): void {
+    const {prefix = "WARN", timestamp = false} = options
+    nativeConsole.log(formatMenssage(message, prefix, colors.yellow, timestamp))
 }

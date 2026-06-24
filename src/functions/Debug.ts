@@ -1,7 +1,8 @@
-import { colors, formatMenssage, nativeConsole } from "#core";
+import { colors, formatMenssage, LogOptions, nativeConsole } from "#core";
 
 // Log de debug — só exibe quando DEBUG=true
-export function debug(message: string): void {
+export function debug(message: string, options: LogOptions = {}): void {
     if (process.env.DEBUG !== "true") return;
-    nativeConsole.debug(formatMenssage(message, "DEBUG", colors.magenta, true))
+    const {prefix = "DEBUG", timestamp = true} = options
+    nativeConsole.debug(formatMenssage(message, prefix, colors.magenta, timestamp))
 }
