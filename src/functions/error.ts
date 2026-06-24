@@ -4,14 +4,15 @@ import { exitProcess } from "#utils";
 
 function getErrorCode(error: unknown): unknown {
   if (error !== null && typeof error === "object" && "code" in error) {
-    return (error as { code?: unknown }).code;
+   const code = (error as { code?: unknown }).code;
+    return typeof code === "number" ? code : undefined;
   }
 
   return undefined;
 }
 
 // funcao fatal que encerra o processo
-export function error(message: string, options: ErrorOptions = {}): never {
+export function error(message: string, options: ErrorOptions = {}): void {
   const {
     code,
     prefix = "ERROR",
@@ -20,13 +21,12 @@ export function error(message: string, options: ErrorOptions = {}): never {
     error,
     ...metadata
   } = options;
-  const errorCode = getErrorCode(error);
+
   const exitCode =
-    typeof code === "number"
-      ? code
-      : typeof errorCode === "number"
-        ? errorCode
-        : defaults.code;
+      typeof code === "number"
+        ? code
+        : getErrorCode(error);
+
   const customParams = Object.fromEntries(
     Object.entries(metadata).filter(([, value]) => value !== undefined),
   );
@@ -40,9 +40,11 @@ export function error(message: string, options: ErrorOptions = {}): never {
 
   // Exibe stack trace se existir
   if (showStack && error instanceof Error) {
-    console.error(error.stack);
+    nativeConsole.error(error.stack);
   }
 
   // Encerra o processo
-  exitProcess(exitCode);
+  if(typeof exitCode === "number"){
+    exitProcess(exitCode);
+  }
 }

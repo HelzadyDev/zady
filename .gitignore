@@ -11,3 +11,4 @@ teste
 *.log
 *.cjs
 *.mjs
+*.diff
