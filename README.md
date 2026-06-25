@@ -50,18 +50,25 @@ As mensagens usam codigos ANSI para colorir a saida em terminais compativeis.
 | `warn(message)` | Exibe um aviso com o prefixo `WARN`. |
 | `success(message)` | Exibe uma confirmacao com o prefixo `SUCCESS`. |
 | `debug(message)` | Exibe uma mensagem com o prefixo `DEBUG` somente quando `DEBUG=true`. |
-| `error(message, options?)` | Exibe um erro formatado e encerra o processo. |
+| `error(message, options?)` | Exibe um erro formatado. Encerra o processo somente se `code` for fornecido. |
 | `divider(char?, length?)` | Exibe uma linha divisoria no terminal. |
 | `timer(label)` | Cria um medidor de tempo e retorna um objeto com `stop(label?)`. |
 | `patchConsole(options?)` | Substitui metodos do `console` nativo por versoes formatadas. |
 
 ## Erros
 
-`error` e uma funcao fatal: depois de imprimir a mensagem, ela encerra o processo com `process.exit`.
+`error` exibe a mensagem formatada e, **opcionalmente**, encerra o processo. O comportamento depende da opcao `code`:
+
+- **sem `code`** — apenas registra o erro e retorna normalmente.
+- **com `code`** — registra o erro e chama `process.exit(code)`.
 
 ```ts
 import zady from "@helzady/zady";
 
+// Apenas loga — processo continua
+zady.error("Variavel de ambiente ausente");
+
+// Loga e encerra o processo
 try {
   throw new Error("Falha ao conectar");
 } catch (err) {
@@ -78,11 +85,11 @@ Opcoes aceitas:
 
 | Opcao | Tipo | Padrao | Descricao |
 | --- | --- | --- | --- |
-| `code` | `number` | `1` | Codigo usado ao encerrar o processo. |
+| `code` | `number` | — | Codigo de saida. Quando fornecido, encerra o processo apos o log. Quando omitido, apenas registra o erro. |
 | `prefix` | `string` | `"ERROR"` | Prefixo exibido na mensagem. |
 | `showStack` | `boolean` | `true` | Exibe a stack quando `error` for uma instancia de `Error`. |
 | `timestamp` | `boolean` | `true` | Controla a exibicao de data e hora. |
-| `error` | `unknown` | `undefined` | Erro original usado para extrair stack e, quando existir, codigo. |
+| `error` | `unknown` | `undefined` | Erro original usado para extrair stack e, quando existir, codigo de saida. |
 
 Campos extras tambem podem ser enviados no objeto de opcoes; eles serao impressos como metadados.
 
@@ -183,15 +190,6 @@ Valores disponiveis:
 | `bgColors` | `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white` |
 | `terminalStyle` | `reset`, `negrito`, `fraco`, `italico`, `sublinhado`, `riscado` |
 
-## Desenvolvimento
 
-```bash
-npm run build
-npm run check
-```
-
-Antes de publicar, o pacote espera os arquivos gerados em `build`.
-
-## Licenca
 
 MIT - [HelzadyDev](https://github.com/HelzadyDev)
