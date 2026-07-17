@@ -1,0 +1,58 @@
+{
+    "name": "@zady/core",
+    "version": "1.0.0",
+    "description": "Coleção de funções utilitárias para acelerar o desenvolvimento de bots Discord com discord.js — componentes, prompts, formatação de texto e mais.",
+    "keywords": [
+        "discord",
+        "discord.js",
+        "discordjs",
+        "discord-bot",
+        "bot",
+        "utils",
+        "utilities",
+        "helpers",
+        "components",
+        "buttons",
+        "action-row",
+        "modal",
+        "embed",
+        "typescript"
+    ],
+    "homepage": "https://github.com/HelzadyDev/zady/tree/main/packages/core#readme",
+    "bugs": {
+        "url": "https://github.com/HelzadyDev/zady/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HelzadyDev/zady.git",
+        "directory": "packages/core"
+    },
+    "license": "ISC",
+    "author": {
+        "url": "https://github.com/HelzadyDev",
+        "name": "Helzady"
+    },
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./build/index.d.ts",
+            "import": "./build/index.mjs",
+            "require": "./build/index.cjs"
+        }
+    },
+    "main": "./build/index.cjs",
+    "module": "./build/index.mjs",
+    "types": "./build/index.d.ts",
+    "files": [
+        "build"
+    ],
+    "scripts": {
+        "build": "unbuild",
+        "dev": "tsc --watch",
+        "check-types": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@zady/config": "*",
+        "unbuild": "^2.0.0"
+    }
+}
