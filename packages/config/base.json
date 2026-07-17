@@ -17,7 +17,7 @@
     "incremental": false,
     "noEmit": true,
     
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     
     "target": "ESNext",
     "module": "ESNext",

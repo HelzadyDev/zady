@@ -583,14 +583,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@magicyan/config@workspace:packages/config":
-  version: 0.0.0-use.local
-  resolution: "@magicyan/config@workspace:packages/config"
-  dependencies:
-    unbuild: "npm:^2.0.0"
-  languageName: unknown
-  linkType: soft
-
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -767,6 +759,23 @@ __metadata:
   checksum: 10c0/c5b7e1770feb5ccfb6802f6ad82a7b0d50874c99331e0c9b259e415e55a38d7a86ad0901c57665d93f75938be2a6a0bc9aa06c9749192cadb2e4512800bbc6e6
   languageName: node
   linkType: hard
+
+"@zady/config@npm:*, @zady/config@workspace:packages/config":
+  version: 0.0.0-use.local
+  resolution: "@zady/config@workspace:packages/config"
+  dependencies:
+    unbuild: "npm:^2.0.0"
+  languageName: unknown
+  linkType: soft
+
+"@zady/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@zady/core@workspace:packages/core"
+  dependencies:
+    "@zady/config": "npm:*"
+    unbuild: "npm:^2.0.0"
+  languageName: unknown
+  linkType: soft
 
 "@zady/discord@workspace:packages/discord":
   version: 0.0.0-use.local
