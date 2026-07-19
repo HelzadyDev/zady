@@ -5,6 +5,5 @@
         "paths": {
             "#package": ["./src/index.ts"]
         }
-    },
-    "include": ["src"]
+    }
 }

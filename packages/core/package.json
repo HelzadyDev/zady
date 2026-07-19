@@ -1,7 +1,7 @@
 {
     "name": "@zady/core",
     "version": "1.0.0",
-    "description": "Coleção de funções utilitárias para acelerar o desenvolvimento de bots Discord com discord.js — componentes, prompts, formatação de texto e mais.",
+    "description": "Coleção de funções utilitárias em TypeScript para acelerar o desenvolvimento de bots Discord — validação de e-mail e URL, formatação e manipulação de texto, geração de números aleatórios e helpers diversos.",
     "keywords": [
         "discord",
         "discord.js",
@@ -11,13 +11,14 @@
         "utils",
         "utilities",
         "helpers",
-        "components",
-        "buttons",
-        "action-row",
-        "modal",
-        "embed",
+        "text-utils",
+        "validation",
+        "random",
         "typescript"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "homepage": "https://github.com/HelzadyDev/zady/tree/main/packages/core#readme",
     "bugs": {
         "url": "https://github.com/HelzadyDev/zady/issues"
@@ -33,26 +34,29 @@
         "name": "Helzady"
     },
     "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "types": "./build/index.d.ts",
-            "import": "./build/index.mjs",
-            "require": "./build/index.cjs"
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
         }
     },
-    "main": "./build/index.cjs",
-    "module": "./build/index.mjs",
-    "types": "./build/index.d.ts",
     "files": [
-        "build"
+        "dist"
     ],
     "scripts": {
         "build": "unbuild",
-        "dev": "tsc --watch",
-        "check-types": "tsc --noEmit"
+        "dev": "tsx playground/index.ts",
+        "check-types": "unbuild --noEmit"
     },
     "devDependencies": {
         "@zady/config": "*",
-        "unbuild": "^2.0.0"
+        "tsx": "^4.23.1",
+        "unbuild": "^2.0.0",
+        "vite-tsconfig-paths": "^6.1.1",
+        "vitest": "^4.1.10"
     }
 }
