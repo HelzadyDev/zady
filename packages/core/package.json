@@ -1,7 +1,7 @@
 {
     "name": "@zady/core",
-    "version": "1.0.0",
-    "description": "Coleção de funções utilitárias em TypeScript para acelerar o desenvolvimento de bots Discord — validação de e-mail e URL, formatação e manipulação de texto, geração de números aleatórios e helpers diversos.",
+    "version": "1.0.1",
+    "description": "Uma coleção de funções utilitárias simples e leves para tarefas comuns em projetos.",
     "keywords": [
         "discord",
         "discord.js",
@@ -55,8 +55,6 @@
     "devDependencies": {
         "@zady/config": "*",
         "tsx": "^4.23.1",
-        "unbuild": "^2.0.0",
-        "vite-tsconfig-paths": "^6.1.1",
-        "vitest": "^4.1.10"
+        "unbuild": "^2.0.0"
     }
 }
