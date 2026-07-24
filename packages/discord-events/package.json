@@ -1,0 +1,62 @@
+{
+    "name": "@zady/discord-events",
+    "version": "1.0.0",
+    "description": "Eventos estendidos para discord.js com foco em moderação, voz, webhooks, cargos e canais.",
+    "keywords": [
+        "discord",
+        "discord.js",
+        "discordjs",
+        "discord-bot",
+        "events",
+        "audit-log",
+        "moderation",
+        "voice",
+        "webhook",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "homepage": "https://github.com/HelzadyDev/zady/tree/main/packages/discord-events#readme",
+    "bugs": {
+        "url": "https://github.com/HelzadyDev/zady/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HelzadyDev/zady.git",
+        "directory": "packages/discord-events"
+    },
+    "license": "ISC",
+    "author": {
+        "url": "https://github.com/HelzadyDev",
+        "name": "Helzady"
+    },
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "unbuild",
+        "test": "vitest run",
+        "check-types": "unbuild --noEmit"
+    },
+    "peerDependencies": {
+        "discord.js": "^14.27.0"
+    },
+    "devDependencies": {
+        "@zady/config": "*",
+        "discord.js": "^14.27.0",
+        "unbuild": "^2.0.0",
+        "vitest": "^4.1.10"
+    }
+}
