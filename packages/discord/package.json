@@ -1,7 +1,10 @@
 {
     "name": "@zady/discord",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "Coleção de funções utilitárias para acelerar o desenvolvimento de bots Discord com discord.js — componentes, prompts, formatação de texto e mais.",
+    "publishConfig": {
+        "access": "public"
+    },
     "keywords": [
         "discord",
         "discord.js",
