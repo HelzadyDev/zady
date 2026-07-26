@@ -48,12 +48,13 @@
         "dist"
     ],
     "scripts": {
-        "build": "unbuild"
+        "build": "unbuild",
+        "dev": "tsx playground/index.ts"
     },
     "devDependencies": {
         "@types/node": "^26.1.1",
         "@zady/config": "*",
+        "tsx": "^4.23.1",
         "unbuild": "^2.0.0"
     }
-    
 }

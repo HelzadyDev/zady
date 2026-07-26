@@ -1109,6 +1109,7 @@ __metadata:
   dependencies:
     "@types/node": "npm:^26.1.1"
     "@zady/config": "npm:*"
+    tsx: "npm:^4.23.1"
     unbuild: "npm:^2.0.0"
   languageName: unknown
   linkType: soft

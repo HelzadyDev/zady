@@ -14,7 +14,34 @@ function getErrorCode(error: unknown): unknown {
   return undefined;
 }
 
-// funcao fatal que encerra o processo
+
+/**
+ * Exibe um erro formatado. Encerra o processo apenas quando um `code`
+ * (explícito ou vindo de `error.code`) é fornecido.
+ *
+ * @example
+ * ```ts
+ * import { logger } from "@zady/logger";
+ *
+ * // Sem "code": apenas loga, o processo continua normalmente
+ * logger.error("Variável de ambiente ausente");
+ *
+ * // Com metadados extras (impressos como objeto após a mensagem)
+ * logger.error("Falha ao validar payload", { userId: 123, route: "/api/users" });
+ *
+ * // Com "code": loga, mostra a stack e encerra o processo com esse código
+ * try {
+ *   throw new Error("Falha ao conectar ao banco");
+ * } catch (err) {
+ *   logger.error("Não foi possível conectar ao banco", {
+ *     code: 1,
+ *     error: err,
+ *     showStack: true,
+ *     timestamp: true,
+ *   });
+ * }
+ * ```
+ */
 export function error(message: string, options: ErrorOptions = {}): void {
   const {
     code,

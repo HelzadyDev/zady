@@ -3,14 +3,51 @@ import { formatMenssage } from "../core/formatter";
 import { nativeConsole } from "../core/nativeConsole";
 
 export interface PatchConsoleOptions {
+  /** Formata `console.log`. @default true */
   log?: boolean;
+  /** Formata `console.warn`. @default true */
   warn?: boolean;
+  /** Formata `console.error`. @default true */
   error?: boolean;
+  /** Formata `console.info`. @default true */
   info?: boolean;
+  /** Formata `console.debug`. @default true */
   debug?: boolean;
+  /** Quando `true`, `console.debug` só imprime com `DEBUG=true`. @default false */
   requireDebugEnv?: boolean;
 }
 
+
+/**
+ * Substitui os métodos nativos do `console` (log, warn, error, info, debug)
+ * por versões formatadas do zady.
+ *
+ * @example
+ * ```ts
+ * import { logger } from "@zady/logger";
+ *
+ * logger.patchConsole();
+ *
+ * console.log("mensagem comum");
+ * console.warn("aviso");
+ * console.error("erro");
+ * console.info("info");
+ * console.debug("debug");
+ * ```
+ *
+ * @example
+ * Ativando apenas alguns métodos:
+ * ```ts
+ * patchConsole({
+ *   log: true,
+ *   warn: true,
+ *   error: false,
+ *   info: true,
+ *   debug: true,
+ *   requireDebugEnv: true,
+ * });
+ * ```
+ */
 export function patchConsole(options: PatchConsoleOptions = {}): void {
   const {
     log = true,

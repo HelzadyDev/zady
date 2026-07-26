@@ -1,4 +1,15 @@
 // Define cores ANSI para terminal
+
+/**
+ * Cores ANSI de texto para uso no terminal.
+ * 
+ * @exemple
+ * ```ts
+ * import { colors, terminalStyle } from "@zady/logger";
+ * 
+ * console.log(`${colors.cyan}Texto ciano${terminalStyle.reset}`);
+ * ```
+ */
 export const colors = {
     "black": "\x1b[30m", 
     "red": "\x1b[31m",
@@ -11,6 +22,16 @@ export const colors = {
     "gray": "\x1b[90m",
 }
 
+/**
+ * Cores ANSI de fundo para uso no terminal.
+ *
+ * @example
+ * ```ts
+ * import { bgColors, terminalStyle } from "@zady/logger";
+ *
+ * console.log(`${bgColors.red}Fundo vermelho${terminalStyle.reset}`);
+ * ```
+ */
 export const bgColors = {
     "black": "\x1b[40m",
     "red": "\x1b[41m",
