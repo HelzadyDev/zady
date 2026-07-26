@@ -1,0 +1,72 @@
+{
+    "name": "@zady/logger",
+    "version": "1.0.0",
+    "description": "um logger simples e poderoso para Node.js, com saídas formatadas no console, tratamento de erros e utilitários focados no desenvolvedor.",
+    "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "logger",
+        "log",
+        "console",
+        "nodejs",
+        "utils",
+        "logging",
+        "degub",
+        "error",
+        "terminal",
+        "developer",
+        "cli",
+        "typescript"
+    ],
+    "homepage": "https://github.com/HelzadyDev/zady/tree/main/packages/logger#readme",
+    "bugs": {
+        "url": "https://github.com/HelzadyDev/zady/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HelzadyDev/zady.git",
+        "directory": "packages/logger"
+    },
+    "license": "ISC",
+    "author": {
+        "url": "https://github.com/HelzadyDev",
+        "name": "Helzady"
+    },
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "unbuild"
+    },
+    "devDependencies": {
+        "@types/node": "^26.1.1",
+        "@zady/config": "*",
+        "unbuild": "^2.0.0"
+    },
+    "imports": {
+        "#functions": [
+            "./build/functions/index.js"
+        ],
+        "#utils": [
+            "./build/utils/index.js"
+        ],
+        "#core": [
+            "./build/core/index.js"
+        ],
+        "#settings": [
+            "./build/settings/index.js"
+        ]
+    }
+}
