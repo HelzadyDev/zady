@@ -17,6 +17,7 @@
     "incremental": false,
     "noEmit": true,
     
+    "types": ["node"],
     "lib": ["ESNext", "DOM"],
     
     "target": "ESNext",
