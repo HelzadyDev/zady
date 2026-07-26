@@ -1,5 +1,7 @@
-import { colors, nativeConsole, terminalStyle } from "#core";
-import { getTimestamp } from "#utils";
+import { colors } from "../core/colors";
+import { nativeConsole } from "../core/nativeConsole";
+import { terminalStyle } from "../core/terminalStyle";
+import { getTimestamp } from "../utils/formatDate";
 
 export interface TimerResult {
     stop: (label?: string) => void;

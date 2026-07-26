@@ -1,6 +1,9 @@
-import { colors, ErrorOptions, formatMenssage, nativeConsole } from "#core";
-import { defaults } from "#settings";
-import { exitProcess } from "#utils";
+import { colors } from "../core/colors";
+import { formatMenssage } from "../core/formatter";
+import { nativeConsole } from "../core/nativeConsole";
+import { ErrorOptions } from "../core/types";
+import { defaults } from "../settings/defaults";
+import { exitProcess } from "../utils/process";
 
 function getErrorCode(error: unknown): unknown {
   if (error !== null && typeof error === "object" && "code" in error) {

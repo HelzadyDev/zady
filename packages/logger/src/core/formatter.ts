@@ -1,16 +1,17 @@
-import { colors, terminalStyle } from "#core";
-import { getTimestamp } from "#utils";
+import { getTimestamp } from "../utils/formatDate";
+import { colors } from "./colors";
+import { terminalStyle } from "./terminalStyle";
 
 // Função responsavel por montar a mensagem fatal
 export function formatMenssage(
-    message: string,
-    prefix: string,
-    color: string,
-    useTimestamp: boolean
+  message: string,
+  prefix: string,
+  color: string,
+  useTimestamp: boolean,
 ): string {
-    const time = useTimestamp
+  const time = useTimestamp
     ? `${colors.gray}[${getTimestamp()}]${terminalStyle.reset}`
-    : ""
+    : "";
 
-    return `${time}${color}[${prefix}]${terminalStyle.reset} ${message}`
+  return `${time}${color}[${prefix}]${terminalStyle.reset} ${message}`;
 }

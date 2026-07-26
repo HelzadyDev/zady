@@ -1,4 +1,6 @@
-import { colors, formatMenssage, nativeConsole } from "#core";
+import { colors } from "../core/colors";
+import { formatMenssage } from "../core/formatter";
+import { nativeConsole } from "../core/nativeConsole";
 
 export interface PatchConsoleOptions {
   log?: boolean;

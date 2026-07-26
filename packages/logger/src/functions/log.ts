@@ -1,4 +1,7 @@
-import { colors, formatMenssage, LogOptions, nativeConsole } from "#core";
+import { colors } from "../core/colors"
+import { formatMenssage } from "../core/formatter"
+import { nativeConsole } from "../core/nativeConsole"
+import { LogOptions } from "../core/types"
 
 // Log padrão (info)
 export function log(message: string, options: LogOptions = {}): void{

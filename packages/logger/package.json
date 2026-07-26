@@ -54,19 +54,6 @@
         "@types/node": "^26.1.1",
         "@zady/config": "*",
         "unbuild": "^2.0.0"
-    },
-    "imports": {
-        "#functions": [
-            "./build/functions/index.js"
-        ],
-        "#utils": [
-            "./build/utils/index.js"
-        ],
-        "#core": [
-            "./build/core/index.js"
-        ],
-        "#settings": [
-            "./build/settings/index.js"
-        ]
     }
+    
 }
