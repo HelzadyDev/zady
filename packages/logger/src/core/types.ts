@@ -9,3 +9,8 @@ export interface ErrorOptions extends LogOptions {
   showStack?: boolean; // mostrar stack trace
   error?: unknown; // objeto de erro
 };
+
+// Tipo utilitário para erros que carregam um 'code' (Node, Axios, Prisma, Mongo, etc.)
+export interface ErrorWinthCode extends Error {
+  code?: string | number;
+}
