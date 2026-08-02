@@ -59,7 +59,7 @@ logger.debug("Valor calculado: 42");
 
 ## Erros
 
-`error()` loga normalmente. Só encerra o processo (`process.exit`) quando um `code` é passado (explícito ou vindo de `error.code`).
+`error()` loga normalmente. Só encerra o processo (`process.exit`) quando um `code` **numérico** é passado — explicitamente em `options.code` ou vindo de `error.code`.
 
 ```ts
 import { logger } from "@zady/logger";
@@ -82,6 +82,55 @@ try {
   });
 }
 ```
+
+### Detecção automática de `error.code`
+
+Sempre que o erro passado em `options.error` tiver uma propriedade `code` (`string` ou `number`), ela é detectada automaticamente e exibida logo após a mensagem — sem precisar informar nada a mais. Isso funciona com erros do Node.js (`ENOENT`, `EACCES`, `ECONNREFUSED`...), Prisma, MongoDB, PostgreSQL, Redis, Axios ou qualquer classe de erro customizada.
+
+Esse `code` é **apenas exibido**: ele não encerra o processo sozinho — quem controla o encerramento continua sendo um `code` numérico em `options.code` (ou um `error.code` numérico).
+
+```ts
+import { logger } from "@zady/logger";
+import fs from "node:fs/promises";
+
+try {
+  await fs.readFile("arquivo-inexistente.txt");
+} catch (err) {
+  // err.code === "ENOENT"
+  logger.error("Arquivo não encontrado", { error: err });
+}
+// [ERROR] Arquivo não encontrado
+// Code: ENOENT
+// (processo continua rodando)
+```
+
+Também funciona com classes de erro customizadas:
+
+```ts
+class AppError extends Error {
+  constructor(message: string, public readonly code: string) {
+    super(message);
+  }
+}
+
+try {
+  throw new AppError("Falha ao conectar", "ECONNREFUSED");
+} catch (err) {
+  logger.error("Erro na conexão", { error: err });
+}
+// [ERROR] Erro na conexão
+// Code: ECONNREFUSED
+```
+
+Códigos numéricos também são suportados (ex: status HTTP vindo de uma lib):
+
+```ts
+logger.error("Requisição falhou", { error: { message: "Not Found", code: 404 } });
+// [ERROR] Requisição falhou
+// Code: 404
+```
+
+> Se o erro não tiver `code`, o comportamento é o mesmo de antes: nenhuma linha extra é exibida.
 
 ## Divisor
 
@@ -153,23 +202,24 @@ console.log(`${terminalStyle.sublinhado}Texto sublinhado${terminalStyle.reset}`)
 | `functions`    | `logger.warn(message, options?)`                     | Aviso (prefixo `WARN`)                                                     |
 | `functions`    | `logger.success(message, options?)`                  | Mensagem de sucesso (prefixo `SUCCESS`)                                    |
 | `functions`    | `logger.debug(message, options?)`                    | Log de debug, só exibido quando `DEBUG=true`                               |
-| `functions`    | `logger.error(message, options?)`                    | Loga um erro; encerra o processo se `code` for informado                   |
+| `functions`    | `logger.error(message, options?)`                    | Loga um erro; exibe `error.code` automaticamente e encerra o processo se um `code` numérico for informado |
 | `functions`    | `logger.divider(char?, length?)`                     | Imprime uma linha separadora no terminal                                   |
 | `functions`    | `logger.timer(label): TimerResult`                   | Mede o tempo decorrido; retorna `{ stop(label?) }`                         |
 | `functions`    | `logger.patchConsole(options?)`                      | Substitui os métodos nativos do `console` por versões formatadas           |
 | `core`         | `colors`                                             | Cores ANSI de texto para uso no terminal                                   |
 | `core`         | `bgColors`                                           | Cores ANSI de fundo para uso no terminal                                   |
 | `core`         | `terminalStyle`                                      | Estilos ANSI (reset, negrito, itálico, sublinhado, riscado)                |
+| `core`         | `ErrorWithCode`                                      | Tipo utilitário: `Error` estendido com `code?: string \| number`           |
 
 ### Opções comuns (`options?`)
 
-| Campo       | Tipo      | Usado em                                   | Descrição                                  |
-|-------------|-----------|---------------------------------------------|---------------------------------------------|
-| `prefix`    | `string`  | todas as funções de log                     | Sobrescreve o prefixo padrão (`LOG`, `INFO`...) |
-| `timestamp` | `boolean` | todas as funções de log                     | Exibe `[DD/MM/YYYY HH:mm]` antes da mensagem |
-| `code`      | `number`  | `error`                                      | Código de saída do processo (`process.exit`) |
-| `showStack` | `boolean` | `error`                                      | Exibe o `stack` do erro, se houver           |
-| `error`     | `unknown` | `error`                                      | Objeto de erro original (`instanceof Error`) |
+| Campo       | Tipo                | Usado em                                   | Descrição                                                                 |
+|-------------|----------------------|---------------------------------------------|-----------------------------------------------------------------------------|
+| `prefix`    | `string`             | todas as funções de log                     | Sobrescreve o prefixo padrão (`LOG`, `INFO`...)                             |
+| `timestamp` | `boolean`            | todas as funções de log                     | Exibe `[DD/MM/YYYY HH:mm]` antes da mensagem                                |
+| `code`      | `number`             | `error`                                      | Código de saída do processo (`process.exit`)                                |
+| `showStack` | `boolean`            | `error`                                      | Exibe o `stack` do erro, se houver                                          |
+| `error`     | `unknown`            | `error`                                      | Objeto de erro original (`instanceof Error`). Se tiver `code` (`string` ou `number`), ele é exibido automaticamente |
 
 ## LICENSE
 
